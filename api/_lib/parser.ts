@@ -33,7 +33,7 @@ export function parseRequest(req: IncomingMessage) {
     theme: theme === "dark" ? "dark" : "light",
     md: md === "1" || md === "true",
     fontSize: fontSize || "96px",
-    images: getArray(images),
+    images: images ? getArray(images) : null,
     widths: getArray(widths),
     heights: getArray(heights),
   };

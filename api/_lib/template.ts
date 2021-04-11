@@ -20,12 +20,12 @@ const mono = readFileSync(`${__dirname}/../_fonts/Vera-Mono.woff2`).toString(
 );
 
 function getCss(theme: string, fontSize: string) {
-  let background = "white";
-  let foreground = "black";
+  let background = "#e8eef3";
+  let foreground = "#053555";
 
   if (theme === "dark") {
-    background = "black";
-    foreground = "white";
+    background = "#171925";
+    foreground = "#fff";
   }
   return `
     @font-face {
@@ -122,8 +122,8 @@ export function getHtml(parsedReq: ParsedRequest) {
     <body>
         <div>
             ${
-              images &&
-              `
+              images !== null
+                ? `
             <div class="logo-wrapper">
                 ${images
                   .map(
@@ -134,6 +134,7 @@ export function getHtml(parsedReq: ParsedRequest) {
             </div>
             <div class="spacer">
             `
+                : ""
             }
             <div class="heading">${emojify(
               md ? marked(text) : sanitizeHtml(text)
